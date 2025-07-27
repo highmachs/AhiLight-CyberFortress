@@ -1,378 +1,1718 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniShield: The Future of Unified Security</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutral Harmony -->
-    <!-- Application Structure Plan: A narrative, single-page scroll design that guides the user through the story of OmniShield: The Problem -> The Urgency -> The Solution -> How It Works -> Why It's Different -> The Future. This structure is more intuitive and engaging for a web audience than a traditional report layout. Key interactions include an animated chart showing threat growth, an interactive diagram of OmniShield's unified functions, and a tabbed interface for exploring core technologies. This design prioritizes storytelling and user-directed discovery to make complex information digestible and compelling. -->
-    <!-- Visualization & Content Choices: 1. Threat Growth (Problem Section): Report Info: 17% jump in vulnerabilities. Goal: Show urgency. Viz: Chart.js Line Chart. Interaction: Animate on load, tooltips on hover. Justification: Best for showing trends over time. 2. Unified Functions (Solution Section): Report Info: OmniShield consolidates many tools. Goal: Explain consolidation. Viz: HTML/CSS/JS interactive diagram. Interaction: Click nodes to display info. Justification: Visually reinforces the core "unification" concept in an engaging way. 3. Core Technologies (How it Works Section): Report Info: AI, PQC, Blockchain features. Goal: Detail key tech. Viz: Tabbed interface. Interaction: Click tabs to switch content. Justification: Organizes dense info cleanly. 4. Legacy vs. OmniShield (Advantage Section): Report Info: Contrasting old vs. new. Goal: Highlight value prop. Viz: Two-column comparison layout. Interaction: None needed, direct visual contrast is the goal. Justification: Simple, effective communication of benefits. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>OmniShield - Quantum AI Security System (2025)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #0a192f;
+            --accent: #ff2d75;
+            --dark: #020c1b;
+            --light: #ccd6f6;
+            --success: #00ff9d;
+            --warning: #ffc107;
+            --danger: #ff2d75;
+            --info: #00f0ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8;
-            color: #3D3D3D;
-        }
-        .glass-pane {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .tech-icon-bg {
-            background-color: #F3EFEA;
-        }
-        .tech-tab.active {
-            background-color: #4A5568;
-            color: #FFFFFF;
-        }
-        .tech-tab:not(.active) {
-            background-color: #E2E8F0;
-        }
-        .advantage-card {
-            background-color: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .advantage-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .chart-container {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
             position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
+        
+        body::before {
+            content: "LxA";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40vw;
+            font-weight: 900;
+            color: rgba(10, 25, 47, 0.1);
+            z-index: -1;
+            font-family: 'Orbitron', sans-serif;
+            pointer-events: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(10, 25, 47, 0.8);
+            color: var(--light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links li::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links li:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(2, 12, 27, 0.7), rgba(2, 12, 27, 0.9)), 
+                        url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2160&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 60px rgba(0, 240, 255, 0.3);
             }
         }
-        .interactive-diagram-node {
-            transition: all 0.3s ease;
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--light);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            z-index: 1;
         }
-        .interactive-diagram-node.active {
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 1.5rem;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+        
+        .section-title p {
+            font-size: 1.3rem;
+            color: var(--light);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .features {
+            background-color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80') no-repeat center center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card {
+            background: rgba(10, 25, 47, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 0.3;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .feature-card p {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        .problem-solution {
+            background-color: var(--dark);
+            position: relative;
+        }
+        
+        .ps-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .problem, .solution {
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 45, 117, 0.1);
+        }
+        
+        .problem {
+            background: rgba(255, 45, 117, 0.05);
+            border-left: 5px solid var(--danger);
+        }
+        
+        .solution {
+            background: rgba(0, 255, 157, 0.05);
+            border-left: 5px solid var(--success);
+        }
+        
+        .problem:hover, .solution:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .ps-container h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .problem h3 {
+            color: var(--danger);
+        }
+        
+        .solution h3 {
+            color: var(--success);
+        }
+        
+        .ps-container h3 i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+        
+        .ps-container ul {
+            list-style-position: inside;
+            margin-bottom: 2rem;
+        }
+        
+        .ps-container li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .tech-stack {
+            background: linear-gradient(rgba(2, 12, 27, 0.9), rgba(2, 12, 27, 0.95)), 
+                        url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .tech-card {
+            background: rgba(10, 25, 47, 0.7);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tech-card:hover::before {
+            opacity: 0.3;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        
+        .tech-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .tech-card:hover .tech-icon {
             transform: scale(1.1);
-            background-color: #38B2AC !important;
-            color: white !important;
+            color: var(--accent);
         }
-        .interactive-diagram-node.inactive {
+        
+        .tech-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .tech-card p {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        .faq {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .accordion {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(10, 25, 47, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .accordion-item:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        
+        .accordion-header {
+            background: rgba(0, 240, 255, 0.1);
+            padding: 1.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .accordion-header:hover {
+            background: rgba(0, 240, 255, 0.2);
+        }
+        
+        .accordion-header i {
+            transition: transform 0.3s;
+            color: var(--accent);
+        }
+        
+        .accordion-content {
+            background-color: rgba(10, 25, 47, 0.9);
+            padding: 0 1.8rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            padding: 1.8rem;
+        }
+        
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .accordion-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .accordion-content li {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .use-cases {
+            background: linear-gradient(rgba(2, 12, 27, 0.9), rgba(2, 12, 27, 0.95)), 
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .case-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
+        }
+        
+        .case-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .case-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(2, 12, 27, 0.9));
+        }
+        
+        .case-content {
+            padding: 2rem;
+            background: rgba(10, 25, 47, 0.9);
+            border-top: 3px solid var(--primary);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .case-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .case-content p {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--dark);
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .cta p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 500;
+        }
+        
+        .contact {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .contact-info {
+            background: rgba(10, 25, 47, 0.8);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .contact-info h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .contact-method:hover {
+            background: rgba(0, 240, 255, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .contact-method i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .contact-method a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-method a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-method span {
+            color: var(--light);
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-column p {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-column a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary);
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            background: rgba(0, 240, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+        }
+        
+        .footer-bottom p {
+            font-size: 1rem;
+            color: var(--light);
             opacity: 0.6;
+        }
+        
+        /* Popup styles */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 12, 27, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: rgba(10, 25, 47, 0.95);
+            width: 90%;
+            max-width: 800px;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            transform: scale(0.8);
+            transition: all 0.3s;
+        }
+        
+        .popup.active .popup-content {
+            transform: scale(1);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--light);
+            cursor: pointer;
+            transition: color 0.3s;
+            background: rgba(255, 45, 117, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .popup-close:hover {
+            color: var(--danger);
+        }
+        
+        .popup h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .popup p {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Stats counter */
+        .stats-counter {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        /* Visual elements */
+        .visual-element {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .visual-element.circuit {
+            width: 300px;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80') no-repeat center center/cover;
+            border-radius: 50%;
+            filter: hue-rotate(120deg);
+        }
+        
+        .visual-element.grid {
+            width: 400px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80') no-repeat center center/cover;
+            filter: hue-rotate(180deg);
+        }
+        
+        .visual-element.left {
+            left: -100px;
+        }
+        
+        .visual-element.right {
+            right: -100px;
+        }
+        
+        .visual-element.top {
+            top: 100px;
+        }
+        
+        .visual-element.bottom {
+            bottom: 100px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cta h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .ps-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .visual-element {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 6rem;
+                transition: left 0.3s;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                border-right: 1px solid rgba(0, 240, 255, 0.2);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 90vh;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 80%;
+                margin: 0 auto 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: auto;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title p {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card, .tech-card, .case-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-method {
+                padding: 1rem;
+            }
+            
+            .contact-method i {
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .contact-method a, .contact-method span {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
+    <!-- Popup -->
+    <div class="popup" id="threatPopup">
+        <div class="popup-content">
+            <span class="popup-close" id="popupClose">&times;</span>
+            <h3>Threat Detected</h3>
+            <p>A potential security threat has been identified in your network. Our Quantum AI system has detected unusual activity patterns that match known attack signatures.</p>
+            <p><strong>Threat Type:</strong> Advanced Persistent Threat (APT)</p>
+            <p><strong>Severity:</strong> High</p>
+            <p><strong>Location:</strong> Southeast Asia Node</p>
+            <p>Our autonomous defense systems have already initiated countermeasures. No further action is required at this time.</p>
+        </div>
+    </div>
 
-    <header id="header" class="sticky top-0 z-50 glass-pane">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="text-xl font-bold text-gray-800">
-                <span class="text-teal-600">Omni</span>Shield
-            </div>
-            <div class="hidden md:flex space-x-6">
-                <a href="#problem" class="text-gray-600 hover:text-teal-600">The Problem</a>
-                <a href="#solution" class="text-gray-600 hover:text-teal-600">The Solution</a>
-                <a href="#tech" class="text-gray-600 hover:text-teal-600">Technology</a>
-                <a href="#advantage" class="text-gray-600 hover:text-teal-600">Advantage</a>
-                <a href="#future" class="text-gray-600 hover:text-teal-600">Future Scope</a>
-            </div>
-        </nav>
+    <!-- Visual elements -->
+    <div class="visual-element circuit left top"></div>
+    <div class="visual-element grid right top"></div>
+    <div class="visual-element circuit right bottom"></div>
+    <div class="visual-element grid left bottom"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>OmniShield</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#problem-solution">Problem & Solution</a></li>
+                    <li><a href="#tech-stack">Technology</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="hero" class="py-20 md:py-32 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight">
-                    The End of Security Sprawl.
-                </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                    OmniShield is a revolutionary AI-powered security "superbrain" on a single chip, unifying every defense tool into one self-driving shield for your entire network.
-                </p>
-                <a href="#solution" class="mt-8 inline-block bg-teal-600 text-white font-bold rounded-lg px-8 py-3 hover:bg-teal-700 transition-colors duration-300">
-                    Discover the Solution
-                </a>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>QUANTUM AI SECURITY SYSTEM</h1>
+            <p>OmniShield 2025 - The next generation of autonomous cyber defense powered by Quantum AI and Blockchain technology</p>
+            <a href="#features" class="btn">Explore Features</a>
+        </div>
+    </section>
 
-        <section id="problem" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The Modern Cybersecurity Crisis</h2>
-                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Today’s organizations are drowning in complexity, facing rapidly evolving threats with outdated, fragmented tools.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">The Threat is Accelerating</h3>
-                        <p class="text-gray-600 mb-6">The volume of cyber threats is growing exponentially. In 2024 alone, over 30,000 new software vulnerabilities were disclosed—a 17% increase from prior years. Legacy defenses simply can't keep pace.</p>
-                        <div class="chart-container">
-                            <canvas id="vulnerabilityChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Overwhelmed by "Tool Sprawl"</h3>
-                        <p class="text-gray-600 mb-6">IT leaders report that having too many separate, disjointed security systems is actively impeding real protection. This complexity creates dangerous blind spots and inefficiencies.</p>
-                        <div class="bg-amber-100 text-amber-800 p-6 rounded-lg text-center">
-                            <div class="text-5xl font-extrabold">68%</div>
-                            <div class="mt-2 text-lg font-medium">of retailers report using 10-49 different security tools, creating massive integration challenges.</div>
-                        </div>
-                    </div>
-                </div>
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>KEY FEATURES</h2>
+                <p>OmniShield combines cutting-edge technologies to deliver unparalleled security protection</p>
             </div>
-        </section>
-
-        <section id="solution" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The Solution: One Unified Shield</h2>
-                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">OmniShield replaces dozens of siloed appliances with a single, intelligent, plug-and-play chip that controls and protects every device in your building.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Driven Threat Detection</h3>
+                    <p>On-board Quantum AI continuously analyzes network behavior to spot anomalies and zero-day attacks faster than human teams, automatically isolating threats in real-time.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2160&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                 </div>
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
-                    <div class="w-full lg:w-2/3 relative flex items-center justify-center p-8" style="min-height: 400px;">
-                        <div id="diagram-center" class="absolute w-32 h-32 bg-teal-600 text-white rounded-full flex items-center justify-center text-center font-bold text-lg z-10 shadow-lg">Omni Shield</div>
-                        <div id="diagram-nodes-container"></div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
                     </div>
-                    <div class="w-full lg:w-1/3 p-6 bg-white rounded-lg shadow-md min-h-[200px]">
-                        <h3 id="diagram-title" class="text-2xl font-bold text-gray-800 mb-2">Unified Defense Core</h3>
-                        <p id="diagram-text" class="text-gray-600">Click on a capability to learn more. OmniShield integrates all critical security functions into one hardware-based superbrain, eliminating gaps and providing a single source of truth for your network's security.</p>
-                    </div>
+                    <h3>Quantum-Safe Encryption</h3>
+                    <p>Post-quantum cryptographic algorithms implemented in hardware to resist future quantum hacking, protecting your data for decades to come.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                 </div>
-            </div>
-        </section>
-
-        <section id="tech" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Inside the Technology</h2>
-                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">OmniShield is built on a foundation of synergistic, future-proof technologies.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Blockchain Audit Ledger</h3>
+                    <p>Immutable blockchain logging creates tamper-proof records of all network events with cryptographic device IDs and precise timestamps.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1625024867834-4f21c0205a61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                 </div>
-                <div class="max-w-4xl mx-auto">
-                    <div class="flex flex-wrap justify-center gap-2 mb-8">
-                        <button class="tech-tab active px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="ai">AI-Driven Response</button>
-                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="quantum">Quantum-Safe Encryption</button>
-                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="blockchain">Blockchain Audit Ledger</button>
-                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="honeypots">Autonomous Honeypots</button>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bug"></i>
                     </div>
-                    <div id="tech-content" class="bg-white p-8 rounded-xl shadow-md transition-opacity duration-500">
+                    <h3>Adaptive Honeypots</h3>
+                    <p>Intelligent decoy environments that evolve using generative AI to mimic real networks and learn from attacker behavior.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
+                    <h3>Real-Time Response</h3>
+                    <p>Instant automated reactions to threats - quarantining traffic, blocking commands, or neutralizing attacks within milliseconds of detection.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c0b8d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Smart Building Protection</h3>
+                    <p>Comprehensive security for IoT-enabled smart buildings with automatic device discovery and uniform protection policies.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="advantage" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The OmniShield Advantage</h2>
-                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">A fundamental shift from complex and reactive to simple and proactive.</p>
+    <section id="problem-solution" class="problem-solution">
+        <div class="container">
+            <div class="section-title">
+                <h2>PROBLEM & SOLUTION</h2>
+                <p>How OmniShield addresses today's critical security challenges</p>
+            </div>
+            <div class="ps-container">
+                <div class="problem">
+                    <h3><i class="fas fa-exclamation-triangle"></i> The Cybersecurity Crisis</h3>
+                    <p>Modern businesses face overwhelming security challenges:</p>
+                    <ul>
+                        <li>Tool sprawl with 10-49 different security products in typical organizations</li>
+                        <li>Disjointed systems that create security gaps and blind spots</li>
+                        <li>Exploding IoT devices creating massive attack surfaces</li>
+                        <li>68% of enterprises report management complexity with current solutions</li>
+                        <li>AI-driven attacks making signature-based tools obsolete</li>
+                        <li>Quantum computing threatening current encryption standards</li>
+                    </ul>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="advantage-card rounded-lg p-6">
-                        <h3 class="text-2xl font-bold text-red-600 mb-4">Legacy Security</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Dozens of disjointed, complex tools</li>
-                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Reactive, signature-based detection</li>
-                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Vulnerable to AI-driven & zero-day attacks</li>
-                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Encryption breakable by quantum computers</li>
-                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Slow, manual response to threats</li>
-                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Tamperable logs and security blind spots</li>
+                <div class="solution">
+                    <h3><i class="fas fa-check-circle"></i> The OmniShield Solution</h3>
+                    <p>Our unified approach transforms security operations:</p>
+                    <ul>
+                        <li>Consolidates all defenses into one hardware-based platform</li>
+                        <li>Plug-and-play deployment with automatic device protection</li>
+                        <li>Built-in root of trust and tamper-resistant quantum encryption</li>
+                        <li>Quantum AI-powered threat detection and autonomous response</li>
+                        <li>Future-proof design with upgradable post-quantum cryptography</li>
+                        <li>Blockchain-verified audit logs for complete transparency</li>
+                    </ul>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1625024867834-4f21c0205a61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech-stack" class="tech-stack">
+        <div class="container">
+            <div class="section-title">
+                <h2>TECHNOLOGY STACK</h2>
+                <p>The advanced technologies powering OmniShield's security capabilities</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Quantum AI Processors</h3>
+                    <p>Specialized neural processing units for real-time threat analysis and adaptive learning capabilities.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Post-Quantum Cryptography</h3>
+                    <p>Lattice-based and multivariate cryptographic algorithms resistant to quantum attacks.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Blockchain Integration</h3>
+                    <p>Distributed ledger technology for immutable audit logs and device identity management.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1625024867834-4f21c0205a61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Adaptive Honeypots</h3>
+                    <p>Generative AI creates evolving decoy environments that learn from attacker behavior.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Zero-Trust Architecture</h3>
+                    <p>Continuous verification of all devices and users with least-privilege access.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c0b8d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3>Edge Computing</h3>
+                    <p>Distributed processing at network edge for real-time response without latency.</p>
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>FREQUENTLY ASKED QUESTIONS</h2>
+                <p>Answers to common questions about OmniShield</p>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How is OmniShield different from traditional security solutions?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>OmniShield represents a fundamental shift from traditional security approaches:</p>
+                        <ul>
+                            <li><strong>Quantum AI-powered:</strong> Uses quantum machine learning algorithms that can detect threats traditional systems miss</li>
+                            <li><strong>Hardware-based security:</strong> Dedicated security chip with built-in root of trust and tamper-resistant storage</li>
+                            <li><strong>Autonomous operation:</strong> Self-learning system that improves over time without human intervention</li>
+                            <li><strong>Quantum-safe:</strong> Implements post-quantum cryptography to protect against future threats</li>
+                            <li><strong>Unified platform:</strong> Replaces dozens of point solutions with one integrated system</li>
                         </ul>
+                        <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2160&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                     </div>
-                    <div class="advantage-card rounded-lg p-6 border-2 border-teal-500">
-                        <h3 class="text-2xl font-bold text-teal-600 mb-4">The OmniShield Approach</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>One unified, plug-and-play platform</li>
-                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Proactive, AI-driven behavioral analysis</li>
-                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Adapts and learns to neutralize new threats</li>
-                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Hardware-based Post-Quantum Cryptography</li>
-                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Instant, real-time automated response</li>
-                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Immutable blockchain audit ledger</li>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What types of threats can OmniShield protect against?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>OmniShield provides comprehensive protection against modern cyber threats:</p>
+                        <ul>
+                            <li><strong>AI-driven attacks:</strong> Morphing malware, adversarial AI, and other evolving threats</li>
+                            <li><strong>Zero-day exploits:</strong> Previously unknown vulnerabilities through behavioral analysis</li>
+                            <li><strong>Advanced persistent threats:</strong> Sophisticated, targeted attacks through continuous monitoring</li>
+                            <li><strong>IoT vulnerabilities:</strong> Automatic protection for diverse connected devices</li>
+                            <li><strong>Quantum computing threats:</strong> Future-proof encryption against quantum attacks</li>
+                            <li><strong>Insider threats:</strong> Behavioral analysis and blockchain-verified activity logs</li>
                         </ul>
+                        <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How does the quantum-safe encryption work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>OmniShield's quantum-safe encryption uses several innovative approaches:</p>
+                        <ul>
+                            <li><strong>Lattice-based cryptography:</strong> Mathematical problems that are hard for both classical and quantum computers</li>
+                            <li><strong>Hash-based signatures:</strong> One-time signatures that remain secure even with quantum computing</li>
+                            <li><strong>Multivariate cryptography:</strong> Solving systems of multivariate equations that are quantum-resistant</li>
+                            <li><strong>Hardware implementation:</strong> Cryptographic algorithms baked into silicon for maximum security</li>
+                            <li><strong>Key rotation:</strong> Frequent automatic key changes to limit exposure</li>
+                        </ul>
+                        <p>The system is designed to be upgradable as new post-quantum standards emerge.</p>
+                        <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What is the deployment process for OmniShield?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>OmniShield is designed for simple, rapid deployment:</p>
+                        <ol>
+                            <li><strong>Physical installation:</strong> Connect the OmniShield device to your network</li>
+                            <li><strong>Automatic discovery:</strong> System immediately catalogs all devices and assets</li>
+                            <li><strong>Policy application:</strong> Zero-trust policies automatically applied based on best practices</li>
+                            <li><strong>Behavioral baseline:</strong> AI learns normal network patterns over 24-48 hours</li>
+                            <li><strong>Full protection:</strong> Autonomous security operations begin with continuous updates</li>
+                        </ol>
+                        <p>For large deployments, multiple units can be managed through a central dashboard.</p>
+                        <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1625024867834-4f21c0205a61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How does the AI threat detection actually work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>OmniShield's Quantum AI uses a multi-layered approach:</p>
+                        <ul>
+                            <li><strong>Behavioral analysis:</strong> Neural networks establish baselines and detect anomalies</li>
+                            <li><strong>Threat correlation:</strong> Cross-references events with global threat intelligence</li>
+                            <li><strong>Deep learning:</strong> Analyzes network traffic patterns at scale</li>
+                            <li><strong>Predictive modeling:</strong> Anticipates attack vectors based on current activity</li>
+                            <li><strong>Honeypot learning:</strong> Improves detection based on attacker interactions</li>
+                            <li><strong>Quantum algorithms:</strong> Processes complex threat patterns exponentially faster</li>
+                        </ul>
+                        <p>The AI runs directly on the OmniShield chip for maximum performance and privacy.</p>
+                        <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2160&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What industries can benefit from OmniShield?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>OmniShield is designed for any organization with digital assets:</p>
+                        <ul>
+                            <li><strong>Financial services:</strong> Quantum-safe protection for sensitive transactions</li>
+                            <li><strong>Healthcare:</strong> HIPAA-compliant security for medical IoT and patient data</li>
+                            <li><strong>Critical infrastructure:</strong> Protection for power grids and utilities</li>
+                            <li><strong>Government:</strong> Secure communications and data against nation-state threats</li>
+                            <li><strong>Manufacturing:</strong> Industrial IoT security for smart factories</li>
+                            <li><strong>Smart cities:</strong> Municipal IoT protection for public services</li>
+                            <li><strong>Retail:</strong> Unified security for POS systems and customer data</li>
+                        </ul>
+                        <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'); margin-top: 20px; height: 150px; border-radius: 8px;"></div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="future" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Securing Tomorrow's Ecosystems</h2>
-                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">OmniShield is built to scale, protecting any environment with connected devices and pioneering a new category of autonomous security.</p>
+    <section id="use-cases" class="use-cases">
+        <div class="container">
+            <div class="section-title">
+                <h2>USE CASES</h2>
+                <p>Explore how OmniShield can transform security in various environments</p>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');"></div>
+                    <div class="case-content">
+                        <h3>Enterprise Networks</h3>
+                        <p>Replace dozens of security appliances with one unified solution that protects all endpoints, servers, and IoT devices across your corporate network with autonomous threat detection and response.</p>
+                    </div>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 text-center">
-                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-                        <span class="text-4xl mb-2">🏢</span>
-                        <span class="font-semibold">Smart Buildings</span>
+                <div class="case-card">
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');"></div>
+                    <div class="case-content">
+                        <h3>Smart Buildings</h3>
+                        <p>Secure all connected systems - HVAC, access control, cameras, and sensors - with automatic protection and blockchain-audited activity logs for complete building security.</p>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-                        <span class="text-4xl mb-2">🏠</span>
-                        <span class="font-semibold">Smart Homes</span>
+                </div>
+                <div class="case-card">
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');"></div>
+                    <div class="case-content">
+                        <h3>Industrial IoT</h3>
+                        <p>Protect critical infrastructure and manufacturing systems from operational disruption with real-time threat detection and response for industrial control systems.</p>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-                        <span class="text-4xl mb-2">🏭</span>
-                        <span class="font-semibold">Industrial IoT</span>
+                </div>
+                <div class="case-card">
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');"></div>
+                    <div class="case-content">
+                        <h3>Healthcare Facilities</h3>
+                        <p>Secure medical devices, patient records, and hospital systems with HIPAA-compliant protection and quantum-safe encryption for sensitive health data.</p>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
-                        <span class="text-4xl mb-2">🏥</span>
-                        <span class="font-semibold">Hospitals</span>
+                </div>
+                <div class="case-card">
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');"></div>
+                    <div class="case-content">
+                        <h3>Financial Institutions</h3>
+                        <p>Protect sensitive financial data and transactions with advanced fraud detection and quantum-resistant cryptography for banking and fintech applications.</p>
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center col-span-2 md:col-span-1 lg:col-span-1">
-                        <span class="text-4xl mb-2">🏙️</span>
-                        <span class="font-semibold">Smart Cities</span>
+                </div>
+                <div class="case-card">
+                    <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80');"></div>
+                    <div class="case-content">
+                        <h3>Smart Cities</h3>
+                        <p>Create a mesh of self-defending infrastructure with interconnected OmniShield nodes protecting municipal systems, transportation, and public services.</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 OmniShield Project. Pioneering the future of autonomous security.</p>
+    <section class="cta">
+        <div class="cta-content">
+            <h2>READY TO TRANSFORM YOUR SECURITY?</h2>
+            <p>OmniShield 2025 replaces tool sprawl and guesswork with one smart, always-on security brain that's easy to manage and hard to beat.</p>
+            <a href="#contact" class="btn">Contact Us</a>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>CONTACT US</h2>
+                <p>Get in touch to learn more about OmniShield and how it can protect your organization</p>
+            </div>
+            <div class="contact-info">
+                <h3>Reach Out Through</h3>
+                <div class="contact-method">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:newworldofsamarjeeth@gmail.com">newworldofsamarjeeth@gmail.com</a>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+919445571382">+91 9445571382</a>
+                </div>
+                <div class="contact-method">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/newworldofsamarjeeth/" target="_blank">SAMARJEETH R</a>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Chennai, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OmniShield</h3>
+                    <p>The All-In-One Quantum AI Security System that unifies every defense tool into one autonomous platform with AI, blockchain, and quantum-safe encryption.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/newworldofsamarjeeth/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/highmachs" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#problem-solution">Problem & Solution</a></li>
+                        <li><a href="#tech-stack">Technology</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#use-cases">Use Cases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">White Papers</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Security Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> newworldofsamarjeeth@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +91 9445571382</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Chennai, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 OmniShield Technologies. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const vulnerabilityData = {
-                labels: ['2020', '2021', '2022', '2023', '2024'],
-                datasets: [{
-                    label: 'New Software Vulnerabilities Disclosed',
-                    data: [18358, 20161, 25081, 25641, 30001],
-                    fill: true,
-                    borderColor: 'rgb(20, 184, 166)',
-                    backgroundColor: 'rgba(20, 184, 166, 0.1)',
-                    tension: 0.4
-                }]
-            };
-
-            const vulnerabilityChartCtx = document.getElementById('vulnerabilityChart').getContext('2d');
-            new Chart(vulnerabilityChartCtx, {
-                type: 'line',
-                data: vulnerabilityData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            ticks: {
-                                callback: function(value) {
-                                    return value / 1000 + 'k';
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += new Intl.NumberFormat('en-US').format(context.parsed.y);
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     }
-                }
-            });
-
-            const techTabs = document.querySelectorAll('.tech-tab');
-            const techContentEl = document.getElementById('tech-content');
-            const techData = {
-                ai: {
-                    title: 'AI-Driven Threat Detection & Response',
-                    content: "OmniShield’s on-board AI continuously analyzes network behavior. It spots anomalies and zero-day attacks faster than human teams and automatically isolates infected devices in real time. It learns and adapts on the fly, making it effective against emerging AI-driven attacks."
-                },
-                quantum: {
-                    title: 'Quantum-Safe Encryption (PQC)',
-                    content: "All data and communications run through hardware encryption that resists future quantum hacking. OmniShield implements post-quantum cryptography in silicon so that, even if intercepted, your secrets stay safe for decades to come."
-                },
-                blockchain: {
-                    title: 'Blockchain-Powered Audit Ledger',
-                    content: "Every event is logged on a built-in, immutable blockchain ledger. This creates a tamper-proof audit trail, eliminating blind spots and preventing log tampering. Each device gets a cryptographic ID, and every action is timestamped."
-                },
-                honeypots: {
-                    title: 'Autonomous Honeypots',
-                    content: "OmniShield spins up intelligent 'decoy' environments that lure attackers away from real systems. These honeypots use generative AI to mimic real networks, and as hackers probe them, OmniShield learns their intrusion patterns to strengthen defenses everywhere."
-                }
-            };
-
-            function updateTechContent(tabName) {
-                const data = techData[tabName];
-                techContentEl.style.opacity = 0;
-                setTimeout(() => {
-                    techContentEl.innerHTML = `
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${data.title}</h3>
-                        <p class="text-gray-600">${data.content}</p>
-                    `;
-                    techContentEl.style.opacity = 1;
-                }, 300);
-            }
-
-            techTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    techTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    updateTechContent(tab.dataset.tab);
-                });
-            });
-
-            updateTechContent('ai');
-
-            const diagramNodesData = [
-                { id: 'ai', name: 'AI Detection', text: 'On-chip AI analyzes behavior to spot anomalies and zero-day attacks instantly.' },
-                { id: 'pqc', name: 'PQC Encryption', text: 'Hardware-based Post-Quantum Cryptography protects data from future threats.' },
-                { id: 'blockchain', name: 'Blockchain Ledger', text: 'An immutable, tamper-proof audit trail for every event on the network.' },
-                { id: 'honeypot', name: 'Honeypots', text: 'Intelligent decoys lure and analyze attackers to strengthen defenses.' },
-                { id: 'firewall', name: 'Unified Firewall', text: 'Manages all firewall rules and access controls from a single point.' },
-                { id: 'iot', name: 'IoT Security', text: 'Automatically discovers, secures, and applies policies to all connected IoT devices.' }
-            ];
-
-            const nodesContainer = document.getElementById('diagram-nodes-container');
-            const diagramTitle = document.getElementById('diagram-title');
-            const diagramText = document.getElementById('diagram-text');
-            const radius = 150;
-
-            diagramNodesData.forEach((node, index) => {
-                const angle = (index / diagramNodesData.length) * 2 * Math.PI;
-                const x = radius * Math.cos(angle);
-                const y = radius * Math.sin(angle);
-                const nodeEl = document.createElement('div');
-                nodeEl.id = `node-${node.id}`;
-                nodeEl.className = 'interactive-diagram-node absolute w-24 h-24 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-md text-sm font-semibold';
-                nodeEl.style.transform = `translate(${x}px, ${y}px)`;
-                nodeEl.textContent = node.name;
-                nodeEl.dataset.text = node.text;
-                nodeEl.dataset.title = node.name;
-
-                nodeEl.addEventListener('click', () => {
-                    document.querySelectorAll('.interactive-diagram-node').forEach(n => {
-                        n.classList.remove('active');
-                        n.classList.add('inactive');
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
                     });
-                    nodeEl.classList.add('active');
-                    nodeEl.classList.remove('inactive');
-                    diagramTitle.textContent = nodeEl.dataset.title;
-                    diagramText.textContent = nodeEl.dataset.text;
                 });
-
-                nodesContainer.appendChild(nodeEl);
+            });
+            
+            // Accordion functionality
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Scroll animation
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.feature-card, .tech-card, .case-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            document.querySelectorAll('.feature-card, .tech-card, .case-card').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Popup functionality
+            const threatPopup = document.getElementById('threatPopup');
+            const popupClose = document.getElementById('popupClose');
+            
+            // Show popup after 5 seconds
+            setTimeout(() => {
+                threatPopup.classList.add('active');
+            }, 5000);
+            
+            popupClose.addEventListener('click', () => {
+                threatPopup.classList.remove('active');
+            });
+            
+            // Close popup when clicking outside
+            threatPopup.addEventListener('click', (e) => {
+                if (e.target === threatPopup) {
+                    threatPopup.classList.remove('active');
+                }
+            });
+            
+            // Stats counter animation
+            const stats = document.querySelectorAll('.stats-counter');
+            if (stats.length > 0) {
+                stats.forEach(stat => {
+                    const target = +stat.getAttribute('data-target');
+                    const count = +stat.innerText;
+                    const increment = target / 100;
+                    
+                    if (count < target) {
+                        stat.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        stat.innerText = target;
+                    }
+                });
+            }
+            
+            // Add interactive hover effects to all cards
+            const cards = document.querySelectorAll('.feature-card, .tech-card, .case-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 15px 40px rgba(0, 240, 255, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    if (!card.classList.contains('active')) {
+                        card.style.transform = 'translateY(0)';
+                        card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                    }
+                });
             });
         });
     </script>
