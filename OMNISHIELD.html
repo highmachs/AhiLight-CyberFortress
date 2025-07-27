@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniShield: The Future of Unified Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A narrative, single-page scroll design that guides the user through the story of OmniShield: The Problem -> The Urgency -> The Solution -> How It Works -> Why It's Different -> The Future. This structure is more intuitive and engaging for a web audience than a traditional report layout. Key interactions include an animated chart showing threat growth, an interactive diagram of OmniShield's unified functions, and a tabbed interface for exploring core technologies. This design prioritizes storytelling and user-directed discovery to make complex information digestible and compelling. -->
+    <!-- Visualization & Content Choices: 1. Threat Growth (Problem Section): Report Info: 17% jump in vulnerabilities. Goal: Show urgency. Viz: Chart.js Line Chart. Interaction: Animate on load, tooltips on hover. Justification: Best for showing trends over time. 2. Unified Functions (Solution Section): Report Info: OmniShield consolidates many tools. Goal: Explain consolidation. Viz: HTML/CSS/JS interactive diagram. Interaction: Click nodes to display info. Justification: Visually reinforces the core "unification" concept in an engaging way. 3. Core Technologies (How it Works Section): Report Info: AI, PQC, Blockchain features. Goal: Detail key tech. Viz: Tabbed interface. Interaction: Click tabs to switch content. Justification: Organizes dense info cleanly. 4. Legacy vs. OmniShield (Advantage Section): Report Info: Contrasting old vs. new. Goal: Highlight value prop. Viz: Two-column comparison layout. Interaction: None needed, direct visual contrast is the goal. Justification: Simple, effective communication of benefits. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #3D3D3D;
+        }
+        .glass-pane {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .tech-icon-bg {
+            background-color: #F3EFEA;
+        }
+        .tech-tab.active {
+            background-color: #4A5568;
+            color: #FFFFFF;
+        }
+        .tech-tab:not(.active) {
+            background-color: #E2E8F0;
+        }
+        .advantage-card {
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .interactive-diagram-node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .interactive-diagram-node.active {
+            transform: scale(1.1);
+            background-color: #38B2AC !important;
+            color: white !important;
+        }
+        .interactive-diagram-node.inactive {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="sticky top-0 z-50 glass-pane">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">
+                <span class="text-teal-600">Omni</span>Shield
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#problem" class="text-gray-600 hover:text-teal-600">The Problem</a>
+                <a href="#solution" class="text-gray-600 hover:text-teal-600">The Solution</a>
+                <a href="#tech" class="text-gray-600 hover:text-teal-600">Technology</a>
+                <a href="#advantage" class="text-gray-600 hover:text-teal-600">Advantage</a>
+                <a href="#future" class="text-gray-600 hover:text-teal-600">Future Scope</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight">
+                    The End of Security Sprawl.
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    OmniShield is a revolutionary AI-powered security "superbrain" on a single chip, unifying every defense tool into one self-driving shield for your entire network.
+                </p>
+                <a href="#solution" class="mt-8 inline-block bg-teal-600 text-white font-bold rounded-lg px-8 py-3 hover:bg-teal-700 transition-colors duration-300">
+                    Discover the Solution
+                </a>
+            </div>
+        </section>
+
+        <section id="problem" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The Modern Cybersecurity Crisis</h2>
+                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Today’s organizations are drowning in complexity, facing rapidly evolving threats with outdated, fragmented tools.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">The Threat is Accelerating</h3>
+                        <p class="text-gray-600 mb-6">The volume of cyber threats is growing exponentially. In 2024 alone, over 30,000 new software vulnerabilities were disclosed—a 17% increase from prior years. Legacy defenses simply can't keep pace.</p>
+                        <div class="chart-container">
+                            <canvas id="vulnerabilityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Overwhelmed by "Tool Sprawl"</h3>
+                        <p class="text-gray-600 mb-6">IT leaders report that having too many separate, disjointed security systems is actively impeding real protection. This complexity creates dangerous blind spots and inefficiencies.</p>
+                        <div class="bg-amber-100 text-amber-800 p-6 rounded-lg text-center">
+                            <div class="text-5xl font-extrabold">68%</div>
+                            <div class="mt-2 text-lg font-medium">of retailers report using 10-49 different security tools, creating massive integration challenges.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The Solution: One Unified Shield</h2>
+                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">OmniShield replaces dozens of siloed appliances with a single, intelligent, plug-and-play chip that controls and protects every device in your building.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                    <div class="w-full lg:w-2/3 relative flex items-center justify-center p-8" style="min-height: 400px;">
+                        <div id="diagram-center" class="absolute w-32 h-32 bg-teal-600 text-white rounded-full flex items-center justify-center text-center font-bold text-lg z-10 shadow-lg">Omni Shield</div>
+                        <div id="diagram-nodes-container"></div>
+                    </div>
+                    <div class="w-full lg:w-1/3 p-6 bg-white rounded-lg shadow-md min-h-[200px]">
+                        <h3 id="diagram-title" class="text-2xl font-bold text-gray-800 mb-2">Unified Defense Core</h3>
+                        <p id="diagram-text" class="text-gray-600">Click on a capability to learn more. OmniShield integrates all critical security functions into one hardware-based superbrain, eliminating gaps and providing a single source of truth for your network's security.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Inside the Technology</h2>
+                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">OmniShield is built on a foundation of synergistic, future-proof technologies.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex flex-wrap justify-center gap-2 mb-8">
+                        <button class="tech-tab active px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="ai">AI-Driven Response</button>
+                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="quantum">Quantum-Safe Encryption</button>
+                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="blockchain">Blockchain Audit Ledger</button>
+                        <button class="tech-tab px-4 py-2 rounded-lg font-semibold transition-colors" data-tab="honeypots">Autonomous Honeypots</button>
+                    </div>
+                    <div id="tech-content" class="bg-white p-8 rounded-xl shadow-md transition-opacity duration-500">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advantage" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">The OmniShield Advantage</h2>
+                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">A fundamental shift from complex and reactive to simple and proactive.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="advantage-card rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-red-600 mb-4">Legacy Security</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Dozens of disjointed, complex tools</li>
+                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Reactive, signature-based detection</li>
+                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Vulnerable to AI-driven & zero-day attacks</li>
+                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Encryption breakable by quantum computers</li>
+                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Slow, manual response to threats</li>
+                            <li class="flex items-start"><span class="mr-2 text-red-500 font-bold">✗</span>Tamperable logs and security blind spots</li>
+                        </ul>
+                    </div>
+                    <div class="advantage-card rounded-lg p-6 border-2 border-teal-500">
+                        <h3 class="text-2xl font-bold text-teal-600 mb-4">The OmniShield Approach</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>One unified, plug-and-play platform</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Proactive, AI-driven behavioral analysis</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Adapts and learns to neutralize new threats</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Hardware-based Post-Quantum Cryptography</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Instant, real-time automated response</li>
+                            <li class="flex items-start"><span class="mr-2 text-teal-500 font-bold">✓</span>Immutable blockchain audit ledger</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Securing Tomorrow's Ecosystems</h2>
+                    <p class="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">OmniShield is built to scale, protecting any environment with connected devices and pioneering a new category of autonomous security.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 text-center">
+                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <span class="text-4xl mb-2">🏢</span>
+                        <span class="font-semibold">Smart Buildings</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <span class="text-4xl mb-2">🏠</span>
+                        <span class="font-semibold">Smart Homes</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <span class="text-4xl mb-2">🏭</span>
+                        <span class="font-semibold">Industrial IoT</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+                        <span class="text-4xl mb-2">🏥</span>
+                        <span class="font-semibold">Hospitals</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center col-span-2 md:col-span-1 lg:col-span-1">
+                        <span class="text-4xl mb-2">🏙️</span>
+                        <span class="font-semibold">Smart Cities</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 OmniShield Project. Pioneering the future of autonomous security.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const vulnerabilityData = {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'New Software Vulnerabilities Disclosed',
+                    data: [18358, 20161, 25081, 25641, 30001],
+                    fill: true,
+                    borderColor: 'rgb(20, 184, 166)',
+                    backgroundColor: 'rgba(20, 184, 166, 0.1)',
+                    tension: 0.4
+                }]
+            };
+
+            const vulnerabilityChartCtx = document.getElementById('vulnerabilityChart').getContext('2d');
+            new Chart(vulnerabilityChartCtx, {
+                type: 'line',
+                data: vulnerabilityData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return value / 1000 + 'k';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US').format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const techTabs = document.querySelectorAll('.tech-tab');
+            const techContentEl = document.getElementById('tech-content');
+            const techData = {
+                ai: {
+                    title: 'AI-Driven Threat Detection & Response',
+                    content: "OmniShield’s on-board AI continuously analyzes network behavior. It spots anomalies and zero-day attacks faster than human teams and automatically isolates infected devices in real time. It learns and adapts on the fly, making it effective against emerging AI-driven attacks."
+                },
+                quantum: {
+                    title: 'Quantum-Safe Encryption (PQC)',
+                    content: "All data and communications run through hardware encryption that resists future quantum hacking. OmniShield implements post-quantum cryptography in silicon so that, even if intercepted, your secrets stay safe for decades to come."
+                },
+                blockchain: {
+                    title: 'Blockchain-Powered Audit Ledger',
+                    content: "Every event is logged on a built-in, immutable blockchain ledger. This creates a tamper-proof audit trail, eliminating blind spots and preventing log tampering. Each device gets a cryptographic ID, and every action is timestamped."
+                },
+                honeypots: {
+                    title: 'Autonomous Honeypots',
+                    content: "OmniShield spins up intelligent 'decoy' environments that lure attackers away from real systems. These honeypots use generative AI to mimic real networks, and as hackers probe them, OmniShield learns their intrusion patterns to strengthen defenses everywhere."
+                }
+            };
+
+            function updateTechContent(tabName) {
+                const data = techData[tabName];
+                techContentEl.style.opacity = 0;
+                setTimeout(() => {
+                    techContentEl.innerHTML = `
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${data.title}</h3>
+                        <p class="text-gray-600">${data.content}</p>
+                    `;
+                    techContentEl.style.opacity = 1;
+                }, 300);
+            }
+
+            techTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    techTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    updateTechContent(tab.dataset.tab);
+                });
+            });
+
+            updateTechContent('ai');
+
+            const diagramNodesData = [
+                { id: 'ai', name: 'AI Detection', text: 'On-chip AI analyzes behavior to spot anomalies and zero-day attacks instantly.' },
+                { id: 'pqc', name: 'PQC Encryption', text: 'Hardware-based Post-Quantum Cryptography protects data from future threats.' },
+                { id: 'blockchain', name: 'Blockchain Ledger', text: 'An immutable, tamper-proof audit trail for every event on the network.' },
+                { id: 'honeypot', name: 'Honeypots', text: 'Intelligent decoys lure and analyze attackers to strengthen defenses.' },
+                { id: 'firewall', name: 'Unified Firewall', text: 'Manages all firewall rules and access controls from a single point.' },
+                { id: 'iot', name: 'IoT Security', text: 'Automatically discovers, secures, and applies policies to all connected IoT devices.' }
+            ];
+
+            const nodesContainer = document.getElementById('diagram-nodes-container');
+            const diagramTitle = document.getElementById('diagram-title');
+            const diagramText = document.getElementById('diagram-text');
+            const radius = 150;
+
+            diagramNodesData.forEach((node, index) => {
+                const angle = (index / diagramNodesData.length) * 2 * Math.PI;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                const nodeEl = document.createElement('div');
+                nodeEl.id = `node-${node.id}`;
+                nodeEl.className = 'interactive-diagram-node absolute w-24 h-24 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-md text-sm font-semibold';
+                nodeEl.style.transform = `translate(${x}px, ${y}px)`;
+                nodeEl.textContent = node.name;
+                nodeEl.dataset.text = node.text;
+                nodeEl.dataset.title = node.name;
+
+                nodeEl.addEventListener('click', () => {
+                    document.querySelectorAll('.interactive-diagram-node').forEach(n => {
+                        n.classList.remove('active');
+                        n.classList.add('inactive');
+                    });
+                    nodeEl.classList.add('active');
+                    nodeEl.classList.remove('inactive');
+                    diagramTitle.textContent = nodeEl.dataset.title;
+                    diagramText.textContent = nodeEl.dataset.text;
+                });
+
+                nodesContainer.appendChild(nodeEl);
+            });
+        });
+    </script>
+</body>
+</html>
